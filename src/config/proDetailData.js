@@ -1,0 +1,43 @@
+export const cardListData = [{
+	websitedata: '网安协会主页',
+	url: 'http://snains.cn/',
+	templateNum: '001',
+	money: "10000",
+	src: "http://odmo6x3ig.bkt.clouddn.com/17-9-11/24830535.jpg"
+}, {
+	websitedata: '网安协会主页',
+	url: 'http://snains.cn/',
+	templateNum: '001',
+	money: "10000",
+	src: "http://odmo6x3ig.bkt.clouddn.com/17-9-11/24830535.jpg"
+}, {
+	websitedata: '网安协会主页网安协会主页网安协会主页网安协会主页网安协会主页网安协会主页',
+	url: 'http://snains.cn/http://snains.cn/http://snains.cn/http://snains.cn/http://snains.cn/http://snains.cn/',
+	templateNum: '001',
+	money: "10000",
+	src: "http://odmo6x3ig.bkt.clouddn.com/17-9-11/24830535.jpg"
+}, {
+	websitedata: '网安协会主页',
+	url: 'http://snains.cn/',
+	templateNum: '001',
+	money: "10000",
+	src: "http://odmo6x3ig.bkt.clouddn.com/17-9-11/24830535.jpg"
+}, {
+	websitedata: '网安协会主页',
+	url: 'http://snains.cn/',
+	templateNum: '001',
+	money: "10000",
+	src: "http://odmo6x3ig.bkt.clouddn.com/17-9-11/24830535.jpg"
+}, {
+	websitedata: '网安协会主页',
+	url: 'http://snains.cn/',
+	templateNum: '001',
+	money: "10000",
+	src: "http://odmo6x3ig.bkt.clouddn.com/17-9-11/24830535.jpg"
+}, {
+	websitedata: '网安协会主页',
+	url: 'http://snains.cn/',
+	templateNum: '001',
+	money: "10000",
+	src: "http://odmo6x3ig.bkt.clouddn.com/17-9-11/24830535.jpg"
+}];

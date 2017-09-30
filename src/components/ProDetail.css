@@ -1,0 +1,181 @@
+.ProDetail {
+	margin: 20px auto;
+	padding: 2rem;
+	height: calc( 100% - 4rem);
+}
+
+.ProDetail ul li {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.ProDetail .messageBox {
+	width: 100%;
+	padding: 20px 0 10px;
+	border-bottom: 1px dashed #CCCCCC;
+}
+
+.ProDetail .messageBox .info {
+	display: inline-block;
+	width: 33.33%;
+	vertical-align: top;
+}
+.ProDetail .messageBox .info:nth-child(2) {
+	width: 26.33%;
+}
+.ProDetail .messageBox .info:nth-child(3) {
+	width: 40.33%;
+}
+.ProDetail .messageBox .info li {
+	line-height: 32px;	
+	display: block;
+	text-align: left;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+
+.ProDetail li span.state_apply {
+	color: #ffCC33;
+}
+
+.ProDetail li span.state_develop {
+	color: #0099cc;
+}
+
+.ProDetail li span.state_payment {
+	color: #339933;
+}
+
+.ProDetail li span.state_paying {
+	color: #cc66cc;
+}
+
+.ProDetail .messageBox .info li span:first-child {
+	display: inline-block;
+	width: 110px;
+	text-align: right;
+	line-height: 32px;
+	height: 32px;	
+	border-left: 3px solid #FF0000;
+}
+.ProDetail .messageBox .info li span:first-child:after {
+	content: "：";
+}
+.ProDetail .messageBox .info:last-child li:last-child span:last-child{
+    display: block;
+    padding-left: 44px;
+    height: 126px;
+    overflow-y: auto;
+}
+
+
+/*.ProDetail .messageBox .info li span:first-child:after {
+	content: "：";
+}
+
+.ProDetail .messageBox .info li span {
+	display:inline-block;
+	width: calc( 100% - 160px );
+	line-height: 32px;
+	border: 0px;
+	padding: 0 6px;
+	cursor: not-allowed;
+}
+*/
+.ProDetail .cardBox {
+	padding: 20px 0;
+	width: 100%;
+	height: 500px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.ProDetail .cardBox::-webkit-scrollbar {
+	width: 15px;
+}
+
+.ProDetail .cardBox::-webkit-scrollbar-track {
+	background-color: rgba(240, 240, 240, 1)
+}
+
+.ProDetail .cardBox::-webkit-scrollbar-thumb {
+	background-color: rgba(200, 200, 200, 1)
+}
+
+.ProDetail .cardBox::-webkit-scrollbar-button {
+	background-color: rgba(160, 160, 160, 1)
+}
+
+.ProDetail .card {
+	height: 100%;
+	white-space: nowrap;
+	/*padding: 0 20px;*/
+}
+
+.ProDetail .card .cardOne {
+	display: inline-block;
+	/*border: 1px solid #ccc;*/
+	width: 300px;
+	border-radius: 8px;
+	height: 100%;
+	margin-right: 20px;
+	overflow: hidden;
+}
+.ProDetail .card .cardOne:last-child {
+	margin-right: 0;
+}
+.ProDetail .card .cardOne .cardTitle {
+	background: rgba(255, 102, 102, 1);
+	color: #FFFFFF;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 6px;
+	text-align: center;
+	overflow: hidden; text-overflow:ellipsis; white-space: nowrap;
+}
+.ProDetail .card .cardOne .cardTitle span{
+	display: inline-block;
+	margin-right: 8px;
+}
+.ProDetail .card .cardOne .cardMes {
+	height: calc( 100% - 40px);
+	position: relative;
+}
+
+.ProDetail .card .cardOne .cardMes >img{
+	width: 100%;
+}
+.ProDetail .card .cardOne .cardMes ul{
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom:0;
+	background: rgba(0, 0, 0, .5);
+	color:#FFFFFF;
+}
+.ProDetail .card .cardOne .cardMes ul li:first-child{
+	margin-top: 20px;
+}
+.ProDetail .card .cardOne .cardMes ul li{
+	line-height: 32px;
+	font-size: 16px;
+	vertical-align: middle;
+}
+.ProDetail .card .cardOne .cardMes ul li span{
+	display: inline-block;
+	line-height: 32px;
+	height: 32px;
+}
+.ProDetail .card .cardOne .cardMes ul li span:first-child{
+	width: 100px;
+	text-align: right;
+	vertical-align: top;
+}
+.ProDetail .card .cardOne .cardMes ul li span:last-child{
+	width: calc( 100% - 110px );
+	padding-left: 10px;
+	overflow: hidden; text-overflow:ellipsis; white-space: nowrap;
+}

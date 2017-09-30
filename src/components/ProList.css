@@ -1,0 +1,186 @@
+.body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.main {
+    height: calc( 100% - 96px);
+}
+
+.mainCon {
+    height: 100%;
+}
+
+.container {
+    padding: 2rem;
+    height: calc( 100% - 4rem);
+}
+
+.ProList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    height: calc( 100% - 40px);
+}
+
+.ProList::-webkit-scrollbar {
+    display: none;
+}
+
+.ProList ul {
+    list-style: none;
+}
+.ProList > div{
+    text-align: center;
+    margin-top: 200px;
+    font-size: 50px;
+    color: #ccc;
+}
+
+.ProListTit li {
+    line-height: 40px;
+    border-bottom: 0;
+    list-style: none;
+    background: #eee;
+}
+
+.ProList li {
+    line-height: 60px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+
+.ProListTit li span,
+.ProList li span {
+    display: inline-block;
+    text-align: center;
+    color: #3F3F3F;
+}
+
+.ProList li span.state_apply {
+    color: #ffCC33;
+}
+
+.ProList li span.state_develop {
+    color: #0099cc;
+}
+
+.ProList li span.state_payment {
+    color: #339933;
+}
+
+.ProList li span.state_paying {
+    color: #cc66cc;
+}
+
+.ProList li .payMoney {
+    color: #ff6666;
+    width: 50%;
+    text-align: right;
+    margin: 0 auto;
+    letter-spacing: 1px;
+}
+
+.ProList li .payMoney:before {
+    content: "-";
+}
+
+.ProListTit li span:nth-child(1),
+.ProList li span:nth-child(1) {
+    width: 4%;
+}
+
+.ProListTit li span:nth-child(2),
+.ProList li span:nth-child(2) {
+    width: 10%;
+}
+
+.ProListTit li span:nth-child(3),
+.ProList li span:nth-child(3) {
+    width: 24%;
+    padding: 0 1%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}
+
+.ProListTit li span:nth-child(4),
+.ProList li span:nth-child(4) {
+    width: 18%;
+}
+
+.ProListTit li span:nth-child(5),
+.ProListTit li span:nth-child(6),
+.ProListTit li span:nth-child(7),
+.ProListTit li span:nth-child(8),
+.ProList li span:nth-child(5),
+.ProList li span:nth-child(6),
+.ProList li span:nth-child(7),
+.ProList li span:nth-child(8) {
+    width: 8%;
+}
+
+.ProListTit li span:nth-child(9),
+.ProList li span:nth-child(9) {
+    width: 10%;
+}
+
+.ProList li > span{
+    vertical-align: middle;
+}
+
+.ProList li > span > div.loadingColor,
+.ProList li > span > div.yesColor{
+    border: 1px solid #ff6666;
+    width: 110px;
+    height: 36px;
+    border-radius: 18px;
+    margin: 0 auto;
+}
+
+.ProList li > span > div.loadingColor{
+    border-color: #feb7b8;
+}
+
+.ProList li span .yesBtn {
+    display: block;
+    height: 100%;
+    width: 110px;
+    border-radius: 17px;
+    color: #ff6666;
+    line-height: 34px;
+    margin: 0 auto;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ProList li span .yesBtn:hover {
+    background: #ff6666;
+    color: #fff;
+}
+
+.ProList li span .loadingBtn {
+    display: block;
+    height: 30px;
+    border-radius: 15px;
+    width: 104px;
+    transition: width 1.8s ease-in-out;
+    background-color: #feb7b8;
+    background-image: repeating-linear-gradient(-45deg, #feb7b8, #feb7b8 12px, #ffcccc 12px, #ffcccc 24px);
+    background-size: 600px 100%;
+    animation: loading 12s linear infinite;
+    margin: 3px auto 0;
+}
+
+@keyframes loading {
+    from {
+        background-position: 0% 0%;
+    }
+
+    to {
+        background-position: 600px 0%;
+    }
+}
