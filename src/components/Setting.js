@@ -255,9 +255,11 @@ class Setting extends Component {
         }
     }
     render() {
+        var that = this;
+        console.log(that)
         return (
-            <div className = "setBox">
-                <p ref = "successINO" className = "successINO"></p>
+            <div className="setBox">
+                <p ref="successINO" className="successINO"></p>
                 <div className="setMes">
                     <div className="setMesTit">基本设置</div>
                     <ul>
@@ -268,31 +270,33 @@ class Setting extends Component {
                             </div>
                         </li>
                         <li>
-                            <div className = "mobile">
+                            <div className="mobile">
                                 <span> 联系电话 </span>
-                                <input type = "text" data-isOk={this.state.isOk1} onBlur = {this.checkTel.bind(this)}  ref = "mobileNum" name = "mobile" placeholder = "请输入手机号码" />
+                                <input type="text" data-isOk={this.state.isOk1} onBlur={this.checkTel.bind(this)}  ref="mobileNum" name="mobile" placeholder="请输入手机号码" />
                             </div>
-                            <span ref = "phoneInf" className = "inf"> 电话信息输入不正确 </span>
+                            <span ref="phoneInf" className="inf"> 电话信息输入不正确 </span>
                         </li>
                         <li>
-                            <div className = "address">
+                            <div className="address">
                                 <span> 地址 </span>
-                                <input type = "text" data-isOk={this.state.isOk2} onBlur = {this.checkAddress.bind(this)} ref = "addressTet" name = "address" placeholder = "请输入地址" />
+                                <input type="text" data-isOk={this.state.isOk2} onBlur={this.checkAddress.bind(this)} ref="addressTet" name="address" placeholder="请输入地址" />
                             </div>
-                            <span ref = "addressInf" className = "inf"> 地址信息输入不正确 </span>
+                            <span ref="addressInf" className="inf"> 地址信息输入不正确 </span>
                         </li>
                         <li>
-                            <div className = "email">
+                            <div className="email">
                                 <span> 邮箱 </span>
-                                <input type="email" data-isOk={this.state.isOk3} onBlur = {this.checkEmail.bind(this)} ref = "emailTxt" name = "email" placeholder = "请输入邮箱" />
+                                <input type="email" data-isOk={this.state.isOk3} onBlur={this.checkEmail.bind(this)} ref="emailTxt" name="email" placeholder="请输入邮箱" />
                             </div>
-                            <span ref = "emailInf" className = "inf"> 邮箱信息输入不正确 </span>
+                            <span ref="emailInf" className="inf"> 邮箱信息输入不正确 </span>
                         </li>
                     </ul>
 
-                    <div className = "btnBox">
-                        <button onClick = {this.save.bind(this)}> 保存 </button>
-                        <button> 取消 </button>
+                    <div className="btnBox">
+                        <button onClick={this.save.bind(this)}> 保存 </button>
+                        <button onClick={function(){
+                            that.props.history.goBack()
+                        }}> 取消 </button>
                     </div>
                 </div>
                 <div className="changePwd">
@@ -303,21 +307,21 @@ class Setting extends Component {
                                 <span>原始密码</span>
                                 <input type="password" onBlur={this.checkPwd.bind(this)} ref="oldpwd" name="mobile" />
                             </div>
-                            <span ref="oldpwdIfo" className = "inf">密码不正确</span>
+                            <span ref="oldpwdIfo" className="inf">密码不正确</span>
                         </li>
                         <li>
                             <div className="mobile">
                                 <span>新密码</span>
                                 <input onChange={this.checkNewPwd.bind(this)} type="password" ref="newpwd1" name="mobile" placeholder="至少6位，支持字母与数字" />
                             </div>
-                             <span ref="pwdIfo" className = "inf">新密码不符规则</span>
+                             <span ref="pwdIfo" className="inf">新密码不符规则</span>
                         </li>
                         <li>
                             <div className="address">
                                 <span>确认新密码</span>
                                 <input onChange={this.checkReNewPwd.bind(this)} type="password" ref="newpwd2" name="address" placeholder="再次输入新密码" />
                             </div>
-                             <span ref="newpwdIfo" className = "inf">两次密码不一致</span>
+                             <span ref="newpwdIfo" className="inf">两次密码不一致</span>
                         </li>
                     </ul>
                     <div className="btnBox">

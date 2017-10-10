@@ -33,14 +33,18 @@ class Header extends Component {
 	render() {
 		var $data = this.props.user;
 		var money = $data.balance && $data.balance.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,");
+
 		return (
 			<div className="header">
 				<div className="header-left">
 			        <span>欢迎 {$data.name} 进入西安云适配代理客户管理系统</span>
 			        <span>
 			          	余额
-			          	<span>{money}</span>
-			          	<Link to="/main/billList">查看消费明细</Link>
+			          	<span>{money}</span>{
+			          		this.props.location.pathname === "/main/pro" ?
+			          		<Link to="/main/billList">查看消费明细</Link> :
+			          		<Link to="/main/pro">查看项目列表</Link>	
+			          	}
 			          	<Link to="/main/applyPro" className="applyBtn">项目申请</Link>
 			        </span>
 			    </div>

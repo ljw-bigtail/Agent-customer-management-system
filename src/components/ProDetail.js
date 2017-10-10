@@ -1,6 +1,9 @@
 import React, {
 	Component
 } from 'react';
+import {
+    withRouter
+} from 'react-router-dom';
 import './ProDetail.css';
 
 class ProDetail extends Component {
@@ -8,7 +11,9 @@ class ProDetail extends Component {
 		super(props);
 		this.state = {
 			proData: {},
-			subData: {}
+			subData: {},
+			display: "none",
+			disable: true
 		};
 	}
 	componentWillMount() {
@@ -49,7 +54,35 @@ class ProDetail extends Component {
 			})
 			.catch(e => console.log("报错信息：", e))
 	}
+
+	HandleClick(e) {
+		this.setState({
+			display: "block",
+			disable: !this.state.disable
+		});
+		e.target.style.display="none";
+	}
+	HandleSave(_this){
+		_this.props.history.goBack();
+		fetch("/api/changeProInfo", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(this.state.proData)
+		})
+		.then(response => response.json())
+		.catch(e => console.log("报错信息：", e))
+		
+	}
+	HandleChange(e) {
+		var subName = e.target.name;
+		let pro = this.state.proData;
+		pro[subName] = e.target.value;
+		this.setState({proData: pro});
+	}
 	render() {
+		var _this=this;
 		var data = this.state.proData;
 		var _amount = data.amount && data.amount.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,");
 		var _applicationDate = data.applicationDate && data.applicationDate.split("T")[0];
@@ -59,9 +92,11 @@ class ProDetail extends Component {
 		var subData = this.state.subData;
 
 		var stateColor = '';
+		var showHide = 'none';
 		switch (data.status) {
 			case ("申请中"):
 				stateColor = "state_apply";
+				showHide = "block";
 				break;
 			case ("开发中"):
 				stateColor = "state_develop";
@@ -77,22 +112,26 @@ class ProDetail extends Component {
 		};
 		return (
 			<div className='ProDetail'>
+				<div className="setMesTit">
+					<div ref="edit" style={{display:showHide}} onClick={this.HandleClick.bind(this)}>编辑</div>
+					<div ref="save" style={{display:this.state.display}} onClick={this.HandleSave.bind(this,_this)}>保存</div>
+				</div>
 				<div className='messageBox'>
 			      	<ul className='info'>
 			      	  	<li>
 		  		 			<span>项目编号</span>	
-		  		 			<span>{data.num}</span>
+		  		 			<span>{data.num} </span>
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>项目名称</span>	
-		  		 			<span>{data.name}</span>
+		  		 			<input type="text" name="name"  disabled={this.state.disable} value={data.name} onChange={this.HandleChange.bind(this)} />
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>交易金额</span>	
-		  		 			<span>{_amount}</span>
+		  		 			<input type="text" name="amount" disabled={this.state.disable} value={_amount} onChange={this.HandleChange.bind(this)} />
 		  		 		</li>
 		  		 		<li>
-		  		 			<span>项目状态</span>	
+		  		 			<span>项目状态</span>
 		  		 			<span className={stateColor}>{data.status}</span>
 		  		 		</li>
 			      	</ul>
@@ -103,11 +142,11 @@ class ProDetail extends Component {
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>交付日期</span>	
-		  		 			<span>{_payDate}</span>
+		  		 			<input type="date" name="payDate" disabled={this.state.disable} value={_payDate}  onChange={this.HandleChange.bind(this)} />
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>服务期限</span>	
-		  		 			<span>{data.serviceLife}年</span>
+		  		 			<span><input type="number" name="serviceLife" disabled={this.state.disable} value={data.serviceLife}  onChange={this.HandleChange.bind(this)} />年</span>
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>服务截止日期</span>	
@@ -117,7 +156,8 @@ class ProDetail extends Component {
 			      	<ul className='info'>
 			      	  	<li>
 		  		 			<span>需求描述</span>	
-		  		 			<span>{data.desc}</span>
+		  		 			<textarea type='text' name="desc" disabled={this.state.disable} value={data.desc}  onChange={this.HandleChange.bind(this)}></textarea>
+		  		 			
 		  		 		</li>
 			      	</ul>
 				</div>
@@ -148,4 +188,4 @@ class ProDetail extends Component {
 	}
 }
 
-export default ProDetail;
+export default withRouter(ProDetail);

@@ -124,7 +124,29 @@ userSchema.statics = {
 			}
 			cb(null, isMatch)
 		})
-	}
+	},
+	changeBalance: function(data, callback) {
+		this.findOne({
+			"name": data.userName
+		}).exec((err, _user) => {
+			if (err) {
+				//logger.error(err);
+				console.log(err);
+			} else {
+				var _newProState = _underscore.extend(_user, {
+					"balance": data.balance
+				});
+				_newProState.save((err) => {
+					if (err) {
+						console.log(err);
+						callback('faile');
+					} else {
+						callback('success');
+					}
+				});
+			}
+		});
+	},
 }
 
 userSchema.methods = {

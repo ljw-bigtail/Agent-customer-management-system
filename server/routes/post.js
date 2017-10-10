@@ -25,7 +25,17 @@ router.post('/setUser', function(req, res, next) {
 	})
 });
 
-//保存账户信息
+//修改账户余额
+router.post('/changeBalance', function(req, res, next) {
+	console.log("修改账户余额---------------------    " + req.body);
+	User.changeBalance(req.body, (mes) => {
+		res.send(200, {
+			status: mes
+		});
+	})
+});
+
+//修改账户密码
 router.post('/changePassword', function(req, res, next) {
 	console.log("修改账户密码---------------------    " + req.body.username);
 	User.changePassword(req.body, (mes) => {
@@ -46,7 +56,8 @@ router.post('/checkPassword', function(req, res, next) {
 					if (isMatch) {
 						res.send(200, {
 							status: "ok",
-							username: user.name
+							username: user.name,
+							userGroup: user.group
 						});
 					} else {
 						res.send(200, {
@@ -73,15 +84,49 @@ router.post('/applyNewPro', function(req, res, next) {
 	})
 });
 
-//发送项目列表
-router.post('/getProList', function(req, res, next) {
-	console.log("获取项目列表---------------------    " + req.body.username);
-	Project.findProByName(req.body.username, (proList) => {
-		res.send(200, proList);
+//修改项目
+router.post('/changeProInfo', function(req, res, next) {
+	console.log("修改项目---------------------    " + req.body);
+	Project.changeProInfo(req.body, (proData) => {
+		res.send(200, proData);
 	})
 });
 
-//发送项目信息
+//发送项目列表
+router.post('/getProList', function(req, res, next) {
+	console.log("获取项目列表---------------------    " + req.body.username);
+	if (req.body.username === "") {
+		Project.findAllPro((proList) => {
+			res.send(200, proList);
+		})
+	} else {
+		Project.findProByName(req.body.username, (proList) => {
+			res.send(200, proList);
+		})
+	}
+});
+
+//获取年度销售额
+router.post('/getYearMoney', function(req, res, next) {
+	console.log("获取项目列表---------------------    " + req.body);
+	Project.getYearMoney(req.body.year, (data) => {
+		res.send(200, {
+			money: data
+		});
+	})
+});
+
+//获取月度销售额
+router.post('/getMounthMoney', function(req, res, next) {
+	console.log("获取项目列表---------------------    " + req.body);
+	Project.getMounthMoney(req.body.year, req.body.mounth, (data) => {
+		res.send(200, {
+			money: data
+		});
+	})
+});
+
+//获取项目信息
 router.post('/getProData', function(req, res, next) {
 	console.log("获取项目信息---------------------    " + req.body.proNum);
 	Project.findProByNum(req.body.proNum, (proData) => {
@@ -89,8 +134,15 @@ router.post('/getProData', function(req, res, next) {
 	})
 });
 
+//新建账单
+router.post('/applyDeal', function(req, res, next) {
+	console.log("新建账单---------------------    " + req.body);
+	Deal.applyDeal(req.body, (dealData) => {
+		res.send(200, dealData);
+	})
+});
 
-// 发送账单列表
+// 获取账单列表
 router.post('/getBillList', function(req, res, next) {
 	console.log("获取账单列表---------------------    " + req.body.username);
 	Deal.findBillByName(req.body.username, (billList) => {
@@ -107,7 +159,7 @@ router.post('/setProState', function(req, res, next) {
 	});
 });
 
-//发送项目的模板表
+//获取项目的模板表
 router.post('/getSubByName', function(req, res, next) {
 	console.log("获取项目的模板表---------------------    " + req.body.proNum);
 	ProjectSub.findSubByName(req.body.proNum, (subList) => {

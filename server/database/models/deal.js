@@ -49,6 +49,20 @@ dealSchema.statics = {
 			}
 		})
 	},
+	applyDeal: function(_dealData, callback) {
+		//存数据
+		console.log("_dealData~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" + _dealData)
+		this.create(_dealData, (err, dealData) => {
+			if (err) {
+				console.log(err);
+				callback({
+					mes: "wrong"
+				});
+			} else {
+				callback(dealData);
+			}
+		})
+	}
 }
 
 module.exports = mongoose.model('deal', dealSchema);

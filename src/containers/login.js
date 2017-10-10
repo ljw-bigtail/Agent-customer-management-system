@@ -11,7 +11,8 @@ class LoginPage extends Component {
 	constructor() {
 		super();
 		this.state = {
-			isLogin: false
+			isLogin: false,
+			group: 0
 		}
 	}
 	componentWillUpdate() {
@@ -24,9 +25,15 @@ class LoginPage extends Component {
 	}
 	render() {
 		if (this.state.isLogin) {
-			return (
-				<Redirect to="/main/pro" />
-			)
+			if (this.state.group === 0) {
+				return (
+					<Redirect to="/main/pro" />
+				)
+			} else if (this.state.group === 10) {
+				return (
+					<Redirect to="/admin" />
+				)
+			}
 		} else {
 			return (
 				<div className="login">

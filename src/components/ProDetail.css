@@ -2,6 +2,7 @@
 	margin: 20px auto;
 	padding: 2rem;
 	height: calc( 100% - 4rem);
+	position: relative;
 }
 
 .ProDetail ul li {
@@ -15,7 +16,25 @@
 	padding: 20px 0 10px;
 	border-bottom: 1px dashed #CCCCCC;
 }
-
+.ProDetail .setMesTit{
+	position: absolute;
+	right: 4rem;
+	top: 1rem;
+}
+.ProDetail .setMesTit div{
+    color: #ff6666;
+    padding: .6rem 1.6rem;
+    border: 1px solid #ff6666;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    vertical-align: top;
+    cursor: pointer;
+}
+.ProDetail .setMesTit div:hover{
+    color: #ffffff;
+	background: #ff6666;
+}
 .ProDetail .messageBox .info {
 	display: inline-block;
 	width: 33.33%;
@@ -34,20 +53,32 @@
 	margin-bottom: 10px;
 	font-size: 14px;
 }
+.ProDetail li input,.ProDetail li textarea{
+	line-height: 30px;
+	font-family: inherit;
+	text-indent: 0.5rem;
+    vertical-align: top;
+}
 
-.ProDetail li span.state_apply {
+.ProDetail li input[disabled],.ProDetail li textarea[disabled]{
+	background: none;
+	border:none;
+    resize: none;
+}
+
+.ProDetail li input.state_apply {
 	color: #ffCC33;
 }
 
-.ProDetail li span.state_develop {
+.ProDetail li input.state_develop {
 	color: #0099cc;
 }
 
-.ProDetail li span.state_payment {
+.ProDetail li input.state_payment {
 	color: #339933;
 }
 
-.ProDetail li span.state_paying {
+.ProDetail li input.state_paying {
 	color: #cc66cc;
 }
 

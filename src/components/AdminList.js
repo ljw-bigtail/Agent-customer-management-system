@@ -1,16 +1,16 @@
 import React, {
 	Component
 } from 'react';
-import './ProList.css';
+import './AdminList.css';
 import {
 	Link
 } from 'react-router-dom';
 
 class ProList extends Component {
-	backout(id, serviceTime) {
+	agreePro(id) {
 		const data = {
 			id: id,
-			proState: "已撤销"
+			proState: "开发中"
 		};
 		console.log(data);
 		const url = "/api/setProState";
@@ -31,75 +31,24 @@ class ProList extends Component {
 			})
 			.catch(e => console.log("报错信息：", e))
 	}
-	cutPayment(amount) {
-		var bala = document.getElementsByTagName("span")[2].textContent.replace(",", "") - 0 - amount;
-		const cutData = {
-			name: this.props.userName,
-			balance: bala
+	devDone(id) {
+		const data = {
+			id: id,
+			proState: "交付中"
 		};
-		console.log(bala)
-		const cutUrl = "/api/changeBalance";
-		fetch(cutUrl, {
+		console.log(data);
+		const url = "/api/setProState";
+		fetch(url, {
 				method: "POST",
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(cutData)
+				body: JSON.stringify(data)
 			})
 			.then(response => response.json())
 			.then(data => {
 				if (data.status === 'success') {
-					//刷   新
 					this.getProListFun();
-				} else {
-					console.log("保存失败！")
-				}
-			})
-			.catch(e => console.log("报错信息：", e))
-	}
-	notarize(id, serviceTime, amount) {
-		var bala = document.getElementsByTagName("span")[2].textContent.replace(",", "") - 0 - amount;
-		const cutData = {
-			userName: this.props.userName,
-			balance: bala
-		};
-		console.log(bala)
-		const cutUrl = "/api/changeBalance";
-		fetch(cutUrl, {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(cutData)
-			})
-			.then(response => response.json())
-			.then(cutData => {
-				if (cutData.status === 'success') {
-					var date = new Date();
-					date.setYear(date.getFullYear() + serviceTime)
-					const data = {
-						id: id,
-						proState: "已交付",
-						closingDate: date
-					};
-					const url = "/api/setProState";
-					fetch(url, {
-							method: "POST",
-							headers: {
-								'Content-Type': 'application/json'
-							},
-							body: JSON.stringify(data)
-						})
-						.then(response => response.json())
-						.then(data => {
-							if (data.status === 'success') {
-								//刷新
-								this.getProListFun();
-							} else {
-								console.log("保存失败！")
-							}
-						})
-						.catch(e => console.log("报错信息：", e))
 				} else {
 					console.log("保存失败！")
 				}
@@ -108,7 +57,7 @@ class ProList extends Component {
 	}
 	getProListFun() {
 		const getData = {
-			username: this.props.userName
+			username: ""
 		};
 		const getUrl = "/api/getProList";
 		fetch(getUrl, {
@@ -121,7 +70,7 @@ class ProList extends Component {
 			.then(response => response.json())
 			.then(_data => {
 				const proData = {
-					thead: ["序号", "编号", "项目名称", "交易金额", "申请日期", "交付日期", "服务截止日期", "项目状态", "操作"],
+					thead: ["序号", "代理商", "编号", "项目名称", "交易金额", "申请日期", "交付日期", "服务截止日期", "项目状态", "操作"],
 					tbody: _data
 				}
 				this.setState({
@@ -130,13 +79,13 @@ class ProList extends Component {
 			})
 			.catch(e => console.log("报错信息：", e))
 	}
-	handleClick(id, serviceTime, toolBtn, amount) {
+	handleClick(id, toolBtn) {
 		switch (toolBtn) {
-			case "撤销申请":
-				this.backout(id, serviceTime);
+			case "同意申请":
+				this.agreePro(id);
 				break;
-			case "确认交付":
-				this.notarize(id, serviceTime, amount);
+			case "开发完毕":
+				this.devDone(id);
 				break;
 			default:
 				break;
@@ -150,7 +99,7 @@ class ProList extends Component {
 	}
 	componentWillMount() {
 		const data = {
-			username: this.props.userName
+			username: ""
 		};
 		const url = "/api/getProList";
 		fetch(url, {
@@ -163,7 +112,7 @@ class ProList extends Component {
 			.then(response => response.json())
 			.then(data => {
 				const proData = {
-					thead: ["序号", "编号", "项目名称", "交易金额", "申请日期", "交付日期", "服务截止日期", "项目状态", "操作"],
+					thead: ["序号", "代理商", "编号", "项目名称", "交易金额", "申请日期", "交付日期", "服务截止日期", "项目状态", "操作"],
 					tbody: data
 				}
 				this.setState({
@@ -174,8 +123,7 @@ class ProList extends Component {
 	}
 	render() {
 		var data = this.state.proData;
-		var listLength = data.tbody ? data.tbody.length : 0;
-		var onePro = listLength !== 0 ? data.tbody.map((item, i) => {
+		var onePro = data.tbody && data.tbody.map((item, i) => {
 			var _amount = item.amount ? item.amount.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,") : 0;
 			var _applicationDate = item.applicationDate ? item.applicationDate.split("T")[0] : '';
 			var _payDate = item.payDate ? item.payDate.split("T")[0] : '';
@@ -188,34 +136,30 @@ class ProList extends Component {
 			switch (item.status) {
 				case ("申请中"):
 					stateColor = "state_apply";
-					toolBtn = "撤销申请";
+					toolBtn = "同意申请";
 					toolBtnStyle = "yesBtn";
 					toolBorderColor = "yesColor";
 					break;
 				case ("开发中"):
-					stateColor = "state_develop";
-					toolBtnStyle = "loadingBtn";
-					toolBorderColor = "loadingColor";
+					stateColor = "state_apply";
+					toolBtn = "开发完毕";
+					toolBtnStyle = "yesBtn";
+					toolBorderColor = "yesColor";
 					break;
 				case ("已交付"):
 					stateColor = "state_payment";
 					break;
-				case ("已撤销"):
-					stateColor = "state_payment";
-					break;
 				case ("交付中"):
 					stateColor = "state_paying";
-					toolBtn = "确认交付";
-					toolBtnStyle = "yesBtn";
-					toolBorderColor = "yesColor";
 					break;
 				default:
 					break;
 			}
 			return (
 				<li key={item.num} ref="oneProject">
-					<Link to={`/main/pro/proDetail/${item.num}`}>
+					<Link to="#">
 			  			<span>{i+1}</span>
+			  			<span>{item.userName}</span>
 			  			<span>{item.num}</span>
 			  			<span>{item.name}</span>
 			  			<span><div className="payMoney">{_amount}</div></span>
@@ -226,24 +170,24 @@ class ProList extends Component {
 					</Link>
 		  			<span>
 		  				<div className={toolBorderColor}>
-							<span className={toolBtnStyle} ref="toolBtn" onClick={this.handleClick.bind(this,item.num,item.serviceLife,toolBtn,item.amount)}>{toolBtn}</span>
+							<span className={toolBtnStyle} ref="toolBtn" onClick={this.handleClick.bind(this,item.num,toolBtn)}>{toolBtn}</span>
 		  				</div>
 		  			</span>
 				</li>
 			);
-		}) : <div>当前无项目订单，请进行项目申请</div>;
+		});
 		return (
 			<div className="mainCon">
     			<div className="container">
-			        <ul className="ProListTit">	
+			        <ul className="AllListTit">	
 				      	<li>{
 			      			data.thead && data.thead.map((item,i)=>{
 				      			return(<span key={i}>{item}</span>);
 				      		})
 			      		}</li>
 		        	</ul>
-			        <ul className="ProList">	 
-				      	{data.tbody ? onePro : <div>正在查询，请稍后</div>}
+			        <ul className="AllList">	 
+				      	{data.tbody ? onePro : <div>当前无项目数据</div>}
 			        </ul>
     			</div>
     		</div>

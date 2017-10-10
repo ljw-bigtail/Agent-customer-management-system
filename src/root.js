@@ -6,9 +6,14 @@ import {
 
 import Login from './containers/login';
 import Main from './containers/main';
+import Admin from './containers/adminMain';
 
 const main = () => (
 	<Main/>
+)
+
+const admin = () => (
+	<Admin/>
 )
 
 const Root = () => (
@@ -16,6 +21,7 @@ const Root = () => (
         <div className="app">
             <Route exact path="/" component={Login}/>
             <Route path="/main" component={main}/>
+            <Route path="/admin" component={admin}/>
         </div>
     </Router>
 )

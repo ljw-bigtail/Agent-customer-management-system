@@ -36,7 +36,7 @@ let projectSchema = new Schema({
     "status": {
         type: String,
         default: "申请中"
-    }, // 项目状态,申请中,开发中,已交付,交付中
+    }, // 项目状态,申请中,开发中,已交付,交付中,已撤销
     "desc": {
         type: String
     }, // 需求描述
@@ -46,9 +46,28 @@ let projectSchema = new Schema({
 });
 
 projectSchema.statics = {
+    findAllPro: function(callback) {
+        this.find({
+            "status": {
+                $ne: "已撤销"
+            }
+        }).sort({
+            "num": -1
+        }).exec((err, proList) => {
+            if (err) {
+                console.log(err)
+            } else {
+                callback(proList)
+            }
+        })
+    },
     findProByName: function(userName, callback) {
         this.find({
             "userName": userName
+        }).find({
+            "status": {
+                $ne: "已撤销"
+            }
         }).sort({
             "num": -1
         }).exec((err, proList) => {
@@ -70,6 +89,46 @@ projectSchema.statics = {
             }
         })
     },
+    getYearMoney: function(year, callback) {
+        var _year = new RegExp("^" + year + ".*$", "g");
+        this.find({
+            "status": "已交付"
+        }).find({
+            "num": _year
+        }).exec((err, Data) => {
+            if (err) {
+                console.log(err)
+            } else {
+                var Amount = 0;
+                console.log("共有" + Data.length + "条销售记录")
+                for (var i = 0; i < Data.length; i++) {
+                    Amount += Data[i].amount
+                    console.log(Data[i].amount)
+                }
+                callback(Amount)
+            }
+        })
+    },
+    getMounthMoney: function(year, mounth, callback) {
+        var date = new RegExp("^" + year + mounth + ".*$", "g");
+        this.find({
+            "status": "已交付"
+        }).find({
+            "num": date
+        }).exec((err, Data) => {
+            if (err) {
+                console.log(err)
+            } else {
+                var Amount = 0;
+                console.log("共有" + Data.length + "条销售记录")
+                for (var i = 0; i < Data.length; i++) {
+                    Amount += Data[i].amount
+                    console.log(Data[i].amount)
+                }
+                callback(Amount)
+            }
+        })
+    },
     setProState: function(data, callback) {
         this.findOne({
             "num": data.id
@@ -81,6 +140,32 @@ projectSchema.statics = {
                 var _newProState = _underscore.extend(_pro, {
                     "status": data.proState,
                     "closingDate": data.closingDate
+                });
+                _newProState.save((err) => {
+                    if (err) {
+                        console.log(err);
+                        callback('faile');
+                    } else {
+                        callback('success');
+                    }
+                });
+            }
+        })
+    },
+    changeProInfo: function(data, callback) {
+        this.findOne({
+            "num": data.num
+        }).exec((err, _pro) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("需要设置的项目：\n" + _pro)
+                var _newProState = _underscore.extend(_pro, {
+                    "name": data.name,
+                    "amount": data.amount,
+                    "payDate": data.payDate,
+                    "serviceLife": data.serviceLife,
+                    "desc": data.desc
                 });
                 _newProState.save((err) => {
                     if (err) {
@@ -115,6 +200,8 @@ projectSchema.statics = {
 
                 _proData.num = thisTime + thisNum;
 
+                console.log(_proData)
+
                 //存数据
                 this.create(_proData, (err, projectData) => {
                     if (err) {
@@ -128,7 +215,6 @@ projectSchema.statics = {
                 })
             }
         })
-
     }
 }
 

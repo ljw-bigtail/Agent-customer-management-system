@@ -11,6 +11,7 @@ class LoginBox extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			group: 0,
 			logined: false,
 			loginMessage: ""
 		};
@@ -52,8 +53,8 @@ class LoginBox extends Component {
 					console.log("登录成功后：" + document.cookie)
 
 					this.setState({
-						logined: true,
-						loginMessage: data.message
+						group: data.userGroup,
+						logined: true
 					});
 				} else {
 					this.setState({
@@ -66,9 +67,15 @@ class LoginBox extends Component {
 	}
 	render() {
 		if (this.state.logined) {
-			return (
-				<Redirect to="/main/pro" />
-			)
+			if (this.state.group === 0) {
+				return (
+					<Redirect to="/main/pro" />
+				)
+			} else if (this.state.group === 10) {
+				return (
+					<Redirect to="/admin" />
+				)
+			}
 		} else {
 			return (
 				<div id="LoginCard">
