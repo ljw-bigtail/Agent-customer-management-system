@@ -24,6 +24,10 @@ class LoginBox extends Component {
 		})
 	}
 	handleClick() {
+		this.setState({
+			logined: false,
+			loginMessage: ""
+		});
 		const data = {
 			username: this.refs.username.value,
 			password: this.refs.password.value

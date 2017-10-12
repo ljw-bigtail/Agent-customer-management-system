@@ -28,6 +28,8 @@ class AdminHeader extends Component {
 		this.delCookie("username")
 		console.log("删除后的Cookie：" + document.cookie);
 		this.props.history.push("/");
+
+		window.location.reload()
 	}
 	constructor(props) {
 		super(props);

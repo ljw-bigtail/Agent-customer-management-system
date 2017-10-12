@@ -76,45 +76,47 @@ class ApplyPro extends Component {
 				username: data.userName
 			};
 			fetch(getUrl, {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(getData)
-			})
-			.then(response => response.json())
-			.then(_data => {
-				var applyMoney= 0, bala = document.getElementsByTagName("span")[2].textContent.replace(",","")*1,newBala;
-				Array.from(_data).forEach((item,i)=>{
-					if(item.status==="申请中"){
-						applyMoney += item.amount;
+					method: "POST",
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(getData)
+				})
+				.then(response => response.json())
+				.then(_data => {
+					var applyMoney = 0,
+						bala = document.getElementsByTagName("span")[2].textContent.replace(",", "") * 1,
+						newBala;
+					Array.from(_data).forEach((item, i) => {
+						if (item.status === "申请中") {
+							applyMoney += item.amount;
+						}
+					})
+					newBala = bala - applyMoney - data.amount * 1;
+					if (newBala > 0) {
+						fetch(url, {
+								method: "POST",
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								body: JSON.stringify(data)
+							})
+							.then(response => response.json())
+							.then(data => {
+								this.setState({
+									isOk: true,
+									proNum: data.num
+								});
+								var spanS = document.getElementById("addCard").getElementsByTagName("span");
+								spanS[0].style.display = "none";
+								spanS[1].style.display = "block";
+							})
+							.catch(e => console.log("报错信息：", e))
+					} else {
+						alert("冻结余额为" + applyMoney + "，当前余额不足以支付，请联系管理员。");
 					}
 				})
-				newBala = bala-applyMoney-data.amount*1;
-				if(newBala>0){
-					fetch(url, {
-						method: "POST",
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify(data)
-					})
-					.then(response => response.json())
-					.then(data => {
-						this.setState({
-							isOk: true,
-							proNum: data.num
-						});
-						var spanS = document.getElementById("addCard").getElementsByTagName("span");
-						spanS[0].style.display = "none";
-						spanS[1].style.display = "block";
-					})
-					.catch(e => console.log("报错信息：", e))
-				}else{
-					alert("冻结余额为"+applyMoney+"，当前余额不足以支付，请联系管理员。");
-				}
-			})
-			.catch(e => console.log("报错信息：", e))
+				.catch(e => console.log("报错信息：", e))
 
 		} else {
 			alert("保存失败，请将信息内容填写完整");
@@ -194,7 +196,7 @@ class ApplyPro extends Component {
 			<div className='ApplyPro'>
 				<div className="setMesTit">
 					新增项目申请
-					<div onClick={this.handleSave.bind(this)}>保存并付费</div>
+					<div onClick={this.handleSave.bind(this)}>保存并预付费</div>
 				</div>	
 			    <div className='messageBox'>
 			      	<ul className='info'>
