@@ -31,75 +31,27 @@ class ProList extends Component {
 			})
 			.catch(e => console.log("报错信息：", e))
 	}
-	cutPayment(amount) {
-		var bala = document.getElementsByTagName("span")[2].textContent.replace(",", "") - 0 - amount;
-		const cutData = {
-			name: this.props.userName,
-			balance: bala
+	notarize(id, serviceTime, amount) {
+		var date = new Date();
+		date.setYear(date.getFullYear() + serviceTime)
+		const data = {
+			id: id,
+			proState: "已交付",
+			closingDate: date
 		};
-		console.log(bala)
-		const cutUrl = "/api/changeBalance";
-		fetch(cutUrl, {
+		const url = "/api/setProState";
+		fetch(url, {
 				method: "POST",
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(cutData)
+				body: JSON.stringify(data)
 			})
 			.then(response => response.json())
 			.then(data => {
 				if (data.status === 'success') {
-					//刷   新
+					//刷新
 					this.getProListFun();
-				} else {
-					console.log("保存失败！")
-				}
-			})
-			.catch(e => console.log("报错信息：", e))
-	}
-	notarize(id, serviceTime, amount) {
-		var bala = document.getElementsByTagName("span")[2].textContent.replace(",", "") - 0 - amount;
-		const cutData = {
-			userName: this.props.userName,
-			balance: bala
-		};
-		console.log(bala)
-		const cutUrl = "/api/changeBalance";
-		fetch(cutUrl, {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(cutData)
-			})
-			.then(response => response.json())
-			.then(cutData => {
-				if (cutData.status === 'success') {
-					var date = new Date();
-					date.setYear(date.getFullYear() + serviceTime)
-					const data = {
-						id: id,
-						proState: "已交付",
-						closingDate: date
-					};
-					const url = "/api/setProState";
-					fetch(url, {
-							method: "POST",
-							headers: {
-								'Content-Type': 'application/json'
-							},
-							body: JSON.stringify(data)
-						})
-						.then(response => response.json())
-						.then(data => {
-							if (data.status === 'success') {
-								//刷新
-								this.getProListFun();
-							} else {
-								console.log("保存失败！")
-							}
-						})
-						.catch(e => console.log("报错信息：", e))
 				} else {
 					console.log("保存失败！")
 				}

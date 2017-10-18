@@ -7,17 +7,15 @@ import {
 } from 'react-router-dom';
 
 import AdminList from '../components/AdminList';
-
-const proList = () => (
-	<AdminList/>
-)
+import UserManagement from '../components/UserManagement';
 
 class AdminPage extends Component {
 	render() {
 		return (
 			<Router>
 		    	<div className="main">
-					<Route exact path="/admin" component={proList}/>
+					<Route exact path="/admin/pro" component={AdminList}/>
+					<Route path="/admin/userManagement" component={UserManagement}/>
 	    		</div>
 		    </Router>
 		);

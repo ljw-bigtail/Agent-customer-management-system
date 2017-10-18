@@ -15,6 +15,35 @@ router.post('/getUser', function(req, res, next) {
 	})
 });
 
+//删除账户
+router.post('/deletUserByName', function(req, res, next) {
+	console.log("删除账户信息---------------------    " + req.body.username);
+	User.deletUserByName(req.body.username, (mes) => {
+		res.send(200, {
+			status: mes
+		});
+	})
+});
+
+//创建账户
+router.post('/addUser', function(req, res, next) {
+	console.log("创建账户信息---------------------    " + req.body);
+	console.log(req.body)
+	User.addUser(req.body, (mes) => {
+		res.send(200, {
+			status: mes
+		});
+	})
+});
+
+//获取账户列表
+router.post('/getUserList', function(req, res, next) {
+	console.log("获取账户列表信息---------------------    ");
+	User.findUserList(req.body.sortName, (userList) => {
+		res.send(200, userList);
+	})
+});
+
 //保存账户信息
 router.post('/setUser', function(req, res, next) {
 	console.log("保存账户信息---------------------    " + req.body.username);
@@ -96,7 +125,7 @@ router.post('/changeProInfo', function(req, res, next) {
 router.post('/getProList', function(req, res, next) {
 	console.log("获取项目列表---------------------    " + req.body.username);
 	if (req.body.username === "") {
-		Project.findAllPro((proList) => {
+		Project.findAllPro(req.body.sortName, (proList) => {
 			res.send(200, proList);
 		})
 	} else {

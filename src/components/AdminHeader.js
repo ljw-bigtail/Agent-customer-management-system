@@ -2,7 +2,8 @@ import React, {
 	Component
 } from 'react';
 import {
-	withRouter
+	withRouter,
+	Link
 } from 'react-router-dom';
 import './AdminHeader.css';
 
@@ -86,14 +87,19 @@ class AdminHeader extends Component {
 		return (
 			<div className="header">
 				<div className="header-left">
-			        <span>西安云适配代理客户管理系统 - 管理员端</span>
+			        <span>云适配营销管理平台</span>
 			        <span>
 			        	{date.getFullYear()}年度总业绩：
 			        	<span>{yearMoney}</span>元
-			        </span>
-			        <span>
 			        	本月业绩：
 			        	<span>{mounthMoney}</span>元
+			        </span>
+			        <span>
+			        	{
+			          		this.props.location.pathname === "/admin/pro" ?
+			        		<Link to="/admin/userManagement" className="applyBtn">用户管理</Link> :
+			          		<Link to="/admin/pro">返回首页</Link>
+			          	}
 			        </span>
 			    </div>
 			    <div className="header-right">	

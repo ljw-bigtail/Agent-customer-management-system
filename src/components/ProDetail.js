@@ -2,7 +2,7 @@ import React, {
 	Component
 } from 'react';
 import {
-    withRouter
+	withRouter
 } from 'react-router-dom';
 import './ProDetail.css';
 
@@ -60,29 +60,31 @@ class ProDetail extends Component {
 			display: "block",
 			disable: !this.state.disable
 		});
-		e.target.style.display="none";
+		e.target.style.display = "none";
 	}
-	HandleSave(_this){
+	HandleSave(_this) {
 		_this.props.history.goBack();
 		fetch("/api/changeProInfo", {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(this.state.proData)
-		})
-		.then(response => response.json())
-		.catch(e => console.log("报错信息：", e))
-		
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(this.state.proData)
+			})
+			.then(response => response.json())
+			.catch(e => console.log("报错信息：", e))
+
 	}
 	HandleChange(e) {
 		var subName = e.target.name;
 		let pro = this.state.proData;
 		pro[subName] = e.target.value;
-		this.setState({proData: pro});
+		this.setState({
+			proData: pro
+		});
 	}
 	render() {
-		var _this=this;
+		var _this = this;
 		var data = this.state.proData;
 		var _amount = data.amount && data.amount.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,");
 		var _applicationDate = data.applicationDate && data.applicationDate.split("T")[0];
@@ -128,7 +130,8 @@ class ProDetail extends Component {
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>交易金额</span>	
-		  		 			<input type="text" name="amount" disabled={this.state.disable} value={_amount} onChange={this.HandleChange.bind(this)} />
+		  		 			{/*<input type="number" name="amount" disabled={this.state.disable} value={_amount} onChange={this.HandleChange.bind(this)} />*/}
+		  		 			<span >{_amount}</span>
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>项目状态</span>
@@ -146,7 +149,7 @@ class ProDetail extends Component {
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>服务期限</span>	
-		  		 			<span><input type="number" name="serviceLife" disabled={this.state.disable} value={data.serviceLife}  onChange={this.HandleChange.bind(this)} />年</span>
+		  		 			<span><input type="number" min="0" max="100" name="serviceLife" disabled={this.state.disable} value={data.serviceLife}  onChange={this.HandleChange.bind(this)} />年</span>
 		  		 		</li>
 		  		 		<li>
 		  		 			<span>服务截止日期</span>	
@@ -172,9 +175,9 @@ class ProDetail extends Component {
 				  	  		 		</div>
 					  	  		 	<div className="cardMes">
 					  	  		 		<ul>
-			      	  		 			<li ref="cardUrl"><span>详细网址:</span><span>{data.url}</span></li>
-			      	  		 			<li ref="cardMoney"><span>单项金额:</span><span>{money_card}</span></li>
-			      	  		 			<li ref="cardNum"><span>模板编号:</span><span>{data.templateNum}</span></li>
+				      	  		 			<li ref="cardUrl"><span>详细网址:</span><span>{data.url}</span></li>
+				      	  		 			<li ref="cardMoney"><span>单项金额:</span><span>{money_card}</span></li>
+				      	  		 			<li ref="cardNum"><span>模板编号:</span><span>{data.templateNum}</span></li>
 					  	  		 		</ul>
 					  	  		 		<img src={data.templateSrc} alt={"模板编号"+ data.templateNum} />
 			  	  		 			</div>

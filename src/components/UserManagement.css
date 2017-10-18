@@ -1,0 +1,189 @@
+.body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.main {
+    height: calc( 100% - 96px);
+}
+
+.mainCon {
+    height: 100%;
+}
+
+.container {
+    padding: 2rem;
+    height: calc( 100% - 4rem);
+}
+
+.UserList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    height: calc( 100% - 80px);
+}
+
+.UserList::-webkit-scrollbar {
+    display: none;
+}
+
+.UserList ul {
+    list-style: none;
+}
+.UserList > div{
+    text-align: center;
+    margin-top: 200px;
+    font-size: 50px;
+    color: #ccc;
+}
+
+.UserListTit li {
+    line-height: 40px;
+    border-bottom: 0;
+    list-style: none;
+    background: #eee;
+}
+
+.UserList li {
+    line-height: 60px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.UserList li:first-child {
+    text-align: center;
+
+}
+
+.UserList li:first-child {
+    color: #fff;
+    background: #8bc34a;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.UserList li:first-child:hover {
+    color: #8bc34a;
+    background: #fff;
+}
+
+.UserListTit li span,
+.UserList li span {
+    display: inline-block;
+    text-align: center;
+    color: #3F3F3F;
+}
+
+.UserList li span.state_apply {
+    color: #ffCC33;
+}
+
+.UserList li span.state_develop {
+    color: #0099cc;
+}
+
+.UserList li span.state_payment {
+    color: #339933;
+}
+
+.UserList li span.state_paying {
+    color: #cc66cc;
+}
+
+.UserList li .payMoney {
+    color: #ff6666;
+    width: 50%;
+    text-align: right;
+    margin: 0 auto;
+    letter-spacing: 1px;
+}
+
+.UserListTit li span,
+.UserList li span{
+    width: 10%;
+}
+
+.UserListTit li span:nth-child(1),
+.UserList li span:nth-child(1) {
+    width: 4%;
+}
+
+.UserListTit li span:nth-child(2),
+.UserList li span:nth-child(2) {
+    width: 10%;
+}
+
+.UserListTit li span:nth-child(5),
+.UserList li span:nth-child(5) {
+    width: 18%;
+}
+
+.UserListTit li span:nth-child(6),
+.UserList li span:nth-child(6){
+    padding: 0 1%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}
+
+.UserListTit li span:nth-child(7),
+.UserList li span:nth-child(7),
+.UserListTit li span:nth-child(8),
+.UserList li span:nth-child(8){
+    width: 18%;
+}
+
+.UserList li span:last-child div{
+    display: inline-block;
+}
+.UserList li span:last-child div input{
+    width: 9rem;
+    height: 2rem;
+    font-size: 16px;
+    margin-right: 6px;
+    color: #ff6666;
+    border: 1px solid #ff6666;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.UserList li > span{
+    vertical-align: middle;
+}
+
+.UserList li span .toolBtn {
+    border: 1px solid #ff6666;
+    margin: 0 8px;
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 17px;
+    color: #ff6666;
+    line-height: 34px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.UserList li span .toolBtn:hover {
+    background: #ff6666;
+    color: #fff;
+}
+
+.UserList li:nth-child(2) input {
+    width: 80%;
+    height: 2rem;
+    font-size: 16px;
+    padding: 6px;
+    border: 1px solid #8bc34a;
+    border-radius: 4px;
+    color: #8bc34a;
+}
+.UserList li:nth-child(2) span .toolBtn {
+    border-color: #8bc34a;
+    color: #8bc34a;
+    background: #fff;
+}
+.UserList li:nth-child(2) span .toolBtn:hover {
+    color: #fff;
+    background: #8bc34a;
+}

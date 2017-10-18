@@ -55,9 +55,10 @@ class ProList extends Component {
 			})
 			.catch(e => console.log("报错信息：", e))
 	}
-	getProListFun() {
+	getProListFun(name) {
 		const getData = {
-			username: ""
+			username: "",
+			sortName: this.state.sortName
 		};
 		const getUrl = "/api/getProList";
 		fetch(getUrl, {
@@ -79,6 +80,11 @@ class ProList extends Component {
 			})
 			.catch(e => console.log("报错信息：", e))
 	}
+	setSearchName(event) {
+		this.setState({
+			sortName: event.target.value
+		});
+	}
 	handleClick(id, toolBtn) {
 		switch (toolBtn) {
 			case "同意申请":
@@ -94,36 +100,17 @@ class ProList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			proData: {}
+			proData: {},
+			sortName: ""
 		};
 	}
 	componentWillMount() {
-		const data = {
-			username: ""
-		};
-		const url = "/api/getProList";
-		fetch(url, {
-				method: "POST",
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(data)
-			})
-			.then(response => response.json())
-			.then(data => {
-				const proData = {
-					thead: ["序号", "代理商", "编号", "项目名称", "交易金额", "申请日期", "交付日期", "服务截止日期", "项目状态", "操作"],
-					tbody: data
-				}
-				this.setState({
-					proData: proData
-				});
-			})
-			.catch(e => console.log("报错信息：", e))
+		this.getProListFun();
 	}
 	render() {
 		var data = this.state.proData;
-		var onePro = data.tbody && data.tbody.map((item, i) => {
+		var listLength = data.tbody ? data.tbody.length : 0;
+		var onePro = listLength !== 0 ? data.tbody && data.tbody.map((item, i) => {
 			var _amount = item.amount ? item.amount.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,") : 0;
 			var _applicationDate = item.applicationDate ? item.applicationDate.split("T")[0] : '';
 			var _payDate = item.payDate ? item.payDate.split("T")[0] : '';
@@ -175,10 +162,14 @@ class ProList extends Component {
 		  			</span>
 				</li>
 			);
-		});
+		}) : <div>无项目订单</div>;
 		return (
 			<div className="mainCon">
     			<div className="container">
+					<div className='searchBox'>
+    					<input type='text' placeholder="请输入项目关键字" onChange={this.setSearchName.bind(this)}/>
+    					<button onClick={this.getProListFun.bind(this)}>查询项目</button>
+    				</div>
 			        <ul className="AllListTit">	
 				      	<li>{
 			      			data.thead && data.thead.map((item,i)=>{

@@ -39,7 +39,7 @@ class Header extends Component {
 		return (
 			<div className="header">
 				<div className="header-left">
-			        <span>欢迎 {$data.name} 进入西安云适配代理客户管理系统</span>
+			        <span>欢迎 {$data.name} 进入云适配营销管理平台</span>
 			        <span>
 			          	余额
 			          	<span>{money}</span>{

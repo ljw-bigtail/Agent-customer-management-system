@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 
 import AdminPro from '../containers/adminPro';
+import UserManagement from '../containers/userManagement';
+// import NewUser from '../containers/newUser';
 
 import AdminHeader from '../components/AdminHeader';
 
@@ -52,7 +54,9 @@ class Main extends Component {
 					<div className="body">
 				    	<AdminHeader user={this.state.user} />
 
-						<Route path="/admin" component={AdminPro}/>
+						<Route path="/admin/pro" component={AdminPro}/>
+						<Route path="/admin/userManagement" component={UserManagement}/>
+						{/*<Route path="/admin/newUser" component={NewUser}/>*/}
 					</div>
 	    		</Router>
 			);

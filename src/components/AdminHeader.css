@@ -22,7 +22,7 @@
 	padding: 0 1rem;
 }
 
-.header .header-left span:nth-child(2) a {
+.header .header-left span a {
 	color: #ff6666;
 	margin-left: 2rem;
 	padding: .6rem 1.6rem;
@@ -33,7 +33,7 @@
 	vertical-align: top;
 }
 
-.header .header-left span:nth-child(2) .applyBtn {
+.header .header-left span .applyBtn {
 	background: #ff6666;
 	color: #FFFFFF;
 }

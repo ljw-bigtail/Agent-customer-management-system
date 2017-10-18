@@ -46,20 +46,39 @@ let projectSchema = new Schema({
 });
 
 projectSchema.statics = {
-    findAllPro: function(callback) {
-        this.find({
-            "status": {
-                $ne: "已撤销"
-            }
-        }).sort({
-            "num": -1
-        }).exec((err, proList) => {
-            if (err) {
-                console.log(err)
-            } else {
-                callback(proList)
-            }
-        })
+    findAllPro: function(sortName, callback) {
+        if (sortName === '') {
+            this.find({
+                "status": {
+                    $ne: "已撤销"
+                }
+            }).sort({
+                "num": -1
+            }).exec((err, proList) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    callback(proList)
+                }
+            })
+        } else {
+            var _name = new RegExp(sortName, "g");
+            this.find({
+                "status": {
+                    $ne: "已撤销"
+                }
+            }).find({
+                "name": _name
+            }).sort({
+                "num": -1
+            }).exec((err, proList) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    callback(proList)
+                }
+            })
+        }
     },
     findProByName: function(userName, callback) {
         this.find({

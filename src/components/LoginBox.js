@@ -77,7 +77,7 @@ class LoginBox extends Component {
 				)
 			} else if (this.state.group === 10) {
 				return (
-					<Redirect to="/admin" />
+					<Redirect to="/admin/pro" />
 				)
 			}
 		} else {

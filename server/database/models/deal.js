@@ -40,7 +40,7 @@ dealSchema.statics = {
 		this.find({
 			"userName": userName
 		}).sort({
-			"num": -1
+			"_id": -1
 		}).exec((err, billList) => {
 			if (err) {
 				console.log(err)
@@ -56,10 +56,12 @@ dealSchema.statics = {
 			if (err) {
 				console.log(err);
 				callback({
-					mes: "wrong"
+					status: "wrong"
 				});
 			} else {
-				callback(dealData);
+				callback({
+					status: "success"
+				});
 			}
 		})
 	}

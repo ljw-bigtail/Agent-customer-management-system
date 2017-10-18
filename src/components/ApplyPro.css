@@ -1,27 +1,28 @@
 .ApplyPro {
-	padding: 2rem;
+    padding: 2rem;
+    height: calc( 100% - 96px - 4rem);
 }
 
 .ApplyPro ul li {
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }
 
 .ApplyPro .messageBox {
-	width: 100%;
-	padding: 20px 0 10px;
-	border-bottom: 1px dashed #CCCCCC;
+    width: 100%;
+    padding: 20px 0 10px;
+    border-bottom: 1px dashed #CCCCCC;
 }
 
 .ApplyPro .messageBox .info {
-	display: inline-block;
-	width: 100%;
+    display: inline-block;
+    width: 100%;
 }
 
-.ApplyPro .setMesTit div{
-	display: inline;
-	float: right;
+.ApplyPro .setMesTit div {
+    display: inline;
+    float: right;
     color: #ff6666;
     padding: .6rem 1.6rem;
     border: 1px solid #ff6666;
@@ -32,313 +33,341 @@
     cursor: pointer;
     margin-right: 60px;
 }
-.ApplyPro .setMesTit div:hover{
+
+.ApplyPro .setMesTit div:hover {
     color: #ffffff;
-	background: #ff6666;
+    background: #ff6666;
 }
 
 
 .ApplyPro .setMesTit {
-	font-size: 20px;
-	color: #3F3F3F;
-	padding: 0px 6px 14px;
-	width: 100%;
-	border-bottom: 2px solid #F0F0F0;
+    font-size: 20px;
+    color: #3F3F3F;
+    padding: 0px 6px 14px;
+    width: 100%;
+    border-bottom: 2px solid #F0F0F0;
 }
 
 .ApplyPro .messageBox .info li {
-	line-height: 32px;
-	display: inline-block;
-	text-align: left;
-	margin-bottom: 10px;
-	width: 33.33%;
-	font-size: 14px;
+    line-height: 32px;
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 10px;
+    width: 33.33%;
+    font-size: 14px;
 }
 
-.ApplyPro .messageBox .info li:first-child{
-	width: 66.66%;
-	margin-right: 33.33%;
+.ApplyPro .messageBox .info li:first-child {
+    width: 66.66%;
+    margin-right: 33.33%;
 }
+
 .ApplyPro .messageBox .info li.proNeed {
-	width: 100%;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .ApplyPro .messageBox .info li.proYear:after {
-	content: "年";
-	display: inline-block;
-	width: 16px;
-	margin: 0 6px;
+    content: "年";
+    display: inline-block;
+    width: 16px;
+    margin: 0 6px;
 }
 
 .ApplyPro .messageBox .info li.proYear input {
-	text-align: right;
+    text-align: right;
 }
 
 .ApplyPro .messageBox .info li.proYear {
-	width: calc( 33.33% - 20px);
+    width: calc( 33.33% - 20px);
 }
 
 .ApplyPro .messageBox .info span {
-	display: inline-block;
-	width: 110px;
-	text-align: right;
-	line-height: 32px;
-	height: 32px;
-	vertical-align: top;
+    display: inline-block;
+    width: 110px;
+    text-align: right;
+    line-height: 32px;
+    height: 32px;
+    vertical-align: top;
 }
 
 .ApplyPro .messageBox .info span:after {
-	content: "：";
+    content: "：";
 }
 
-.ApplyPro .messageBox .info input ,
+.ApplyPro .messageBox .info input,
 .ApplyPro .messageBox .info textarea {
-	width: calc( 100% - 160px);
-	max-width: calc( 100% - 160px);
-	min-width: calc( 100% - 160px);
-	max-height: 48px;
-	line-height: 24px;
-	border: 1px solid #F0F0F0;
-	padding: 4px 6px;
+    width: calc( 100% - 160px);
+    max-width: calc( 100% - 160px);
+    min-width: calc( 100% - 160px);
+    max-height: 48px;
+    line-height: 24px;
+    border: 1px solid #F0F0F0;
+    padding: 4px 6px;
 }
 
 .ApplyPro .messageBox .info li.proId input {
-	border: 0;
+    border: 0;
 }
 
 .ApplyPro .cardBox {
-	padding: 20px 0;
-	width: 100%;
-	height: 500px;
-	overflow-x: scroll;
-	overflow-y: hidden;
+    padding: 20px 0;
+    width: 100%; // height: 500px;
+    height: calc( 100% - 42px - 190px - 40px);
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .ApplyPro .cardBox::-webkit-scrollbar {
-	width: 15px;
+    width: 15px;
 }
 
 .ApplyPro .cardBox::-webkit-scrollbar-track {
-	background-color: rgba(240, 240, 240, 1)
+    background-color: rgba(240, 240, 240, 1)
 }
 
 .ApplyPro .cardBox::-webkit-scrollbar-thumb {
-	background-color: rgba(200, 200, 200, 1)
+    background-color: rgba(200, 200, 200, 1)
 }
 
 .ApplyPro .cardBox::-webkit-scrollbar-button {
-	background-color: rgba(160, 160, 160, 1)
+    background-color: rgba(160, 160, 160, 1)
 }
 
 .ApplyPro .card {
-	height: 100%;
-	white-space: nowrap;
+    height: 100%;
+    white-space: nowrap;
 }
 
 .ApplyPro .card .cardOne {
-	display: inline-block;
-	width: 300px;
-	border-radius: 8px;
-	height: 100%;
-	margin-right: 20px;
-	overflow: hidden;
+    display: inline-block;
+    width: 300px;
+    border-radius: 8px;
+    height: 100%;
+    margin-right: 20px;
+    overflow: hidden;
 }
 
 .ApplyPro .card .cardOne:last-child {
-	margin-right: 0;
+    margin-right: 0;
 }
 
 .ApplyPro .card .cardOne .cardTitle {
-	background: rgba(255, 102, 102, 1);
-	color: #FFFFFF;
-	height: 40px;
-	line-height: 40px;
-	padding: 0 6px;
-	text-align: center;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+    background: rgba(255, 102, 102, 1);
+    color: #FFFFFF;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 6px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ApplyPro .card .cardOne .cardTitle span {
-	display: inline-block;
-	margin-right: 8px;
+    display: inline-block;
+    margin-right: 8px;
 }
 
 .ApplyPro .card .cardOne .cardMes {
-	height: calc( 100% - 40px);
-	position: relative;
+    height: calc( 100% - 40px);
+    position: relative;
 }
 
 .ApplyPro .card .cardOne .cardMes button {
-	color: #ffffff;
-	margin-left: 2rem;
-	padding: .6rem 1.6rem;
-	border: 1px solid #ff6666;
-	border-radius: 3px;
-	text-decoration: none;
-	font-size: 1.6rem;
-	background: #ff6666;
-	display: block;
-	margin: 20px auto;
+    color: #ffffff;
+    padding: .6rem 1.6rem;
+    border: 1px solid #ff6666;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    background: #ff6666;
+    display: inline-block;
+    margin: 20px 16px;
 }
 
 .ApplyPro .card .cardOne .cardMes>img {
-	width: 100%;
+    width: 100%;
 }
 
 .ApplyPro .card .cardOne .cardMes ul {
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(0, 0, 0, .5);
-	color: #FFFFFF;
-	padding-top: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    color: #FFFFFF;
+    padding: 20px 0;
 }
 
 .ApplyPro .card .cardOne .cardMes ul li {
-	width: 90%;
-	margin: 0 auto;
-	height: 42px;
+    width: 90%;
+    margin: 0 auto;
+    height: 42px;
 }
 
 .ApplyPro .card .cardOne .cardMes ul li span,
 .ApplyPro .card .cardOne .cardMes ul li input {
-	display: inline-block;
-	line-height: 32px;
-	height: 32px;
+    display: inline-block;
+    line-height: 32px;
+    height: 32px;
 }
 
 .ApplyPro .card .cardOne .cardMes ul li span {
-	width: 60px;
-	text-align: right;
-	vertical-align: bottom;
+    width: 60px;
+    text-align: right;
+    vertical-align: bottom;
 }
 
 .ApplyPro .card .cardOne .cardMes ul li input {
-	width: calc( 100% - 70px);
-	padding-left: 10px;
-	background: transparent;
-	border: 0;
-	border-bottom: 1px solid #FFFFFF;
-	color: #FFFFFF;
+    width: calc( 100% - 90px);
+    padding-left: 10px;
+    background: transparent;
+    border: 0;
+    border: 1px solid #F0F0F0;
+    color: #FFFFFF;
+    margin-left: 10px;
 }
 
 .ApplyPro .card .addCardOne {
-	border: 1px solid #CCCCCC;
+    border: 1px solid #CCCCCC;
 }
 
-.ApplyPro .card .addCardOne span {
-	font-size: 100px;
-	color: #FF6666;
-	display: block;
-	text-align: center;
-	font-weight: 300;
-	line-height: 500px;
-	cursor: pointer;
+.ApplyPro .card .addCardOne>span {
+    font-size: 100px;
+    display: block;
+    text-align: center;
+    font-weight: 300;
+    height: 50%;
+    cursor: pointer;
+    background: #FF6666;
+    color: #FFF;
+    position: relative;
 }
 
-.ApplyPro .chooseTemp{
-	display: none;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: rgba(1,1,1,0.5);
-	height: 100%;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	padding: 60px;
+.ApplyPro .card .addCardOne>span i {
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+    overflow: hidden;
+    font-style: normal;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
 }
 
-.ApplyPro .chooseTemp > span{
-	position: absolute;
-	right: 30px;
-	top: 30px;
-	height: 30px;
-	width: 30px;
-	color: #FFFFFF;
-	line-height: 30px;
-	text-align: center;
-	display: block;
-	border: 1px solid #FFFFFF;
-	border-radius: 50%;
-	cursor: pointer;
+
+.ApplyPro .card .addCardOne>span:last-child {
+    font-size: 80px;
+    background: #fff;
+    color: #ccc;
 }
 
-.ApplyPro .chooseTemp ul{
-	max-height: 610px;
-	margin-bottom: 40px;
+.ApplyPro .chooseTemp {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(1, 1, 1, 0.5);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 60px;
 }
-.ApplyPro .chooseTemp ul:last-child{
-	margin-bottom: 120px;
+
+.ApplyPro .chooseTemp>span {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    height: 30px;
+    width: 30px;
+    color: #FFFFFF;
+    line-height: 30px;
+    text-align: center;
+    display: block;
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    cursor: pointer;
 }
-.ApplyPro .chooseTemp ul li{
-	width: 17.6%;
-	margin-right: 3%;
-	display: inline-block;
-	height: 100%;
-	position: relative;
+
+.ApplyPro .chooseTemp ul li:nth-child(5n) {
+    margin-right: 0;
 }
-.ApplyPro .chooseTemp ul li:last-child{
-	margin-right: 0;
+
+.ApplyPro .chooseTemp ul li {
+    width: 17.6%;
+    margin-right: 3%;
+    display: inline-block;
+    height: 100%;
+    position: relative;
 }
-.ApplyPro .chooseTemp ul li img{
-	width: 100%;
+
+.ApplyPro .chooseTemp ul li img {
+    width: 100%;
 }
-.ApplyPro .chooseTemp ul li div{
-	position: absolute;
+
+.ApplyPro .chooseTemp ul li div {
+    position: absolute;
     top: 7%;
     bottom: 13.6%;
     left: 6.2%;
     right: 5.9%;
-	background: #FFFFFF;
-	font-size: 0;
-	overflow-y: scroll;
+    background: #FFFFFF;
+    font-size: 0;
+    overflow-y: scroll;
 }
+
 .ApplyPro .chooseTemp ul li div::-webkit-scrollbar {
-	display: none;
+    display: none;
 }
-.ApplyPro .chooseTemp ul li div img{
-	max-width: 100%;
-}	
+
+.ApplyPro .chooseTemp ul li div img {
+    max-width: 100%;
+}
+
+
+
+
 /*input[type="date"]::-webkit-datetime-edit {
-	padding: 0 6px;
+    padding: 0 6px;
 }
 
 input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-	background-color: #eee;
-	width: 100%;
+    background-color: #eee;
+    width: 100%;
 }
 
 input[type="date"]::-webkit-datetime-edit-text {
-	padding: 0 .5em;	
+    padding: 0 .5em;    
 }
 
 input[type="date"]::-webkit-datetime-edit-year-field,
 input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field {
-	font-size: 14px;
+    font-size: 14px;
 }*/
 
 input[type="date"]::-webkit-inner-spin-button {
-	margin-top: 6px;
+    margin-top: 6px;
 }
 
+
+
+
 /*input[type="date"]::-webkit-calendar-picker-indicator {
-	border: 1px solid #ccc;
-	border-radius: 2px;
-	box-shadow: inset 0 1px #fff, 0 1px #eee;
-	background-color: #eee;
-	background-image: -webkit-linear-gradient(top, #f0f0f0, #e6e6e6);
-	color: #666;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: inset 0 1px #fff, 0 1px #eee;
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(top, #f0f0f0, #e6e6e6);
+    color: #666;
 }*/
 
-input[type=number]::-webkit-inner-spin-button,  
-input[type=number]::-webkit-outer-spin-button {  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     margin-left: 8px;
-}  
+}
