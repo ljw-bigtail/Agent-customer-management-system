@@ -53,6 +53,9 @@
 	margin-bottom: 10px;
 	font-size: 14px;
 }
+.ProDetail li input,.ProDetail li input{
+	min-width: 100px;
+}
 .ProDetail li input,.ProDetail li textarea{
 	line-height: 30px;
 	font-family: inherit;
@@ -60,10 +63,13 @@
     vertical-align: top;
 }
 
-.ProDetail li input[disabled],.ProDetail li textarea[disabled]{
+.ProDetail li input[disabled],
+.ProDetail li textarea[disabled]{
 	background: none;
 	border:none;
     resize: none;
+    color: #000;
+    font-size: 100%;
 }
 
 .ProDetail li input.state_apply {
@@ -82,6 +88,13 @@
 	color: #cc66cc;
 }
 
+.ProDetail .messageBox .info li input[name="name"]{
+	padding-left: 6px;
+}
+.ProDetail .messageBox .info li input[name="serviceLife"]{
+	text-align: right;
+    vertical-align: baseline;
+}
 .ProDetail .messageBox .info li span:first-child {
 	display: inline-block;
 	width: 110px;
@@ -92,6 +105,9 @@
 }
 .ProDetail .messageBox .info li span:first-child:after {
 	content: "：";
+}
+.ProDetail .messageBox .info li span:last-child{
+	padding-left: 12px;
 }
 .ProDetail .messageBox .info:last-child li:last-child span:last-child{
     display: block;

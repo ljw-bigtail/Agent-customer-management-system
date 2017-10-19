@@ -14,7 +14,8 @@ class ApplyPro extends Component {
 			isOk: false,
 			picData: [],
 			productMes: false,
-			proItemMes: false
+			proItemMes: false,
+			defaultPic: 'http://odmo6x3ig.bkt.clouddn.com/17-10-19/21030581.jpg'
 		};
 	}
 	componentWillMount() {
@@ -27,8 +28,23 @@ class ApplyPro extends Component {
 			})
 			.then(response => response.json())
 			.then(data => {
+				var templatData = [
+					[],
+					[],
+					[],
+					[]
+				];
+				data.templatList.forEach(function(item, i) {
+					var index = (item.num + '').substring(0, 1) - 0 - 1;
+					templatData[index].push({
+						classTit: item.desc.split(',')[1],
+						name: item.name,
+						url: item.url,
+						num: item.num
+					})
+				});
 				this.setState({
-					picData: data.templatList
+					picData: templatData
 				})
 			})
 			.catch(e => console.log("报错信息：", e))
@@ -274,6 +290,16 @@ class ApplyPro extends Component {
 		var cardName = cardb.getElementsByClassName("cardName")[index];
 		var cardUrl = cardb.getElementsByClassName("cardUrl")[index];
 
+		if (e.target.nodeName === "SPAN") {
+			//点击关闭
+			chooseTemp.style.display = "none";
+			return false;
+		}
+		if (e.target.nodeName === 'DIV' || e.target.nodeName === 'UL' || e.target.nodeName === 'H2') {
+			//点击空白处无效果
+			return false;
+		}
+
 		function findR(elem) {
 			if (!elem) {
 				return false;
@@ -283,10 +309,6 @@ class ApplyPro extends Component {
 			} else {
 				return findR(elem.parentNode);
 			}
-		}
-		if (e.target.nodeName === 'DIV' || e.target.nodeName === 'UL') {
-			//点击空白处无效果
-			return false;
 		}
 		var tarImg = findR(e.target).getElementsByTagName("img")[1];
 		chooseTemp.style.display = "none";
@@ -314,10 +336,19 @@ class ApplyPro extends Component {
 		if (!needValue) {
 			card.getElementsByTagName("input")[0].value = '';
 			card.getElementsByTagName("input")[1].value = '';
-			card.getElementsByTagName("img")[0].src = '';
+			card.getElementsByTagName("img")[0].src = this.state.defaultPic;
 			card.getElementsByTagName("img")[0].setAttribute('alt', '');
 		}
 		document.getElementById("card").insertBefore(card, document.getElementById("addCard"));
+	}
+	changeMes(message, refName) {
+		var reg = /[\u4e00-\u9fa5]/
+		if (reg.test(message)) {
+			this.refs[refName].style.fontSize = '50px';
+		} else {
+			this.refs[refName].style.fontSize = '80px';
+		}
+		this.refs[refName].innerHTML = message;
 	}
 	render() {
 		return (
@@ -363,27 +394,36 @@ class ApplyPro extends Component {
 				  	  		 				<button className="chooseTempBtn" id="thisBtnId_0">选择模板</button>
 			  	  		 				</li>
 				  	  		 		</ul>
-				  	  		 		<img id='cardBgPic' src='' alt='' className='choosedTempSrc'/>
+				  	  		 		<img id='cardBgPic' src={this.state.defaultPic} alt='' className='choosedTempSrc'/>
 					 			</div>
 					 		</div>
 				 		</div>
 				 		<div className='cardOne addCardOne' id="addCard">
-				 			<span onClick={this.clonePrevCard.bind(this, false)}><i>+</i></span>
-				 			<span onClick={this.clonePrevCard.bind(this, true)}><i>RE</i></span>
+				 			<span onClick={this.clonePrevCard.bind(this, false)} onMouseOver={this.changeMes.bind(this,'新增','addOneCard')} onMouseOut={this.changeMes.bind(this,'+','addOneCard')}><i ref='addOneCard'>+</i></span>
+				 			<span onClick={this.clonePrevCard.bind(this, true)}  onMouseOver={this.changeMes.bind(this,'复用','copyOneCard')} onMouseOut={this.changeMes.bind(this,'RE','copyOneCard')}><i ref='copyOneCard'>RE</i></span>
 				 		</div>
 		      	    </div>
 		  	  	</div>
 	    		<div className='chooseTemp' id='chooseTemp' ref="chooseTemp" onClick={this.keyClick.bind(this)}>
-					<ul>{this.state.picData.length&&this.state.picData.map((item, i) => {
-						return (
-							<li key={item.num}>
-								<img src={phone} alt="temp"/>
-								<div>
-									<img src={item.url} alt="temp" data-index={item.num}/>
-								</div>
-							</li>
-						);
-					})}</ul>
+	    			<span>X</span>
+	    			{this.state.picData.length&&this.state.picData.map((_item, _i) => {
+						return(
+							<div className='tempBox' key={_i}>
+								<h2>{this.state.picData[_i][0].classTit}</h2>
+								<ul>{this.state.picData[_i].length&&this.state.picData[_i].map((item, i) => {
+									return (
+										<li key={item.num}>
+											<img src={phone} alt="temp"/>
+											<div>
+												<img src={item.url} alt="temp" data-index={item.num}/>
+											</div>
+											<h4>{item.num+item.name}</h4>
+										</li>
+									);
+								})}</ul>
+							</div>
+						)
+					})}
 	    		</div>
     		</div>
 		)

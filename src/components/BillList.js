@@ -28,7 +28,7 @@ class BillList extends Component {
 			.then(response => response.json())
 			.then(data => {
 				const billData = {
-					thead: ["序号", "交易日期", "交易金额", "交易类型", "项目编号", "余额"],
+					thead: ["序号", "交易日期", "交易金额（元）", "交易类型", "项目编号", "余额（元）"],
 					tbody: data
 				}
 				this.setState({
@@ -42,6 +42,7 @@ class BillList extends Component {
 		var $li = data.tbody && data.tbody.map((item, i) => {
 			var cls = item.type === "充值" ? "reChange" : "pay";
 			var _amount = item.amount && item.amount.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,");
+			var _balance = item.balance && item.balance.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,");
 			var _time = item.time.split("T")[0]
 			return (
 				<li key={i} >
@@ -54,7 +55,7 @@ class BillList extends Component {
 		  			</span>
 		  			<span>{item.type}</span>
 		  			<span>{item.projectNum ? <Link to={`/main/pro/proDetail/${item.projectNum}`}>{item.projectNum}</Link> : ''}</span>
-		  			<span>{item.balance}</span>
+		  			<span>{_balance}</span>
 				</li>
 			);
 		});

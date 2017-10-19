@@ -179,7 +179,7 @@ class ProDetail extends Component {
 				      	  		 			<li ref="cardMoney"><span>单项金额:</span><span>{money_card}</span></li>
 				      	  		 			<li ref="cardNum"><span>模板编号:</span><span>{data.templateNum}</span></li>
 					  	  		 		</ul>
-					  	  		 		<img src={data.templateSrc} alt={"模板编号"+ data.templateNum} />
+					  	  		 		<img src={data.templateSrc?data.templateSrc:"http://www.bigtail.com.cn/images/avatar.jpg"} alt={"模板编号"+ data.templateNum} />
 			  	  		 			</div>
 			  	  		 		</div>	
 		  		 			)

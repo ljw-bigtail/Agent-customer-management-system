@@ -61,6 +61,8 @@ class LoginBox extends Component {
 						logined: true
 					});
 				} else {
+					//清空密码
+					this.refs.password.value = '';
 					this.setState({
 						logined: false,
 						loginMessage: data.message

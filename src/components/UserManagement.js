@@ -208,7 +208,8 @@ class UserManagements extends Component {
 	}
 	render() {
 		var data = this.state.userData;
-		var oneUser = data.tbody && data.tbody.map((item, i) => {
+		var listLength = data.tbody ? data.tbody.length : 0;
+		var oneUser = listLength !== 0 ? data.tbody && data.tbody.map((item, i) => {
 			var _balance = item.balance ? item.balance.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,") : 0;
 			return (
 				<li key={i} ref="oneProject">
@@ -228,7 +229,7 @@ class UserManagements extends Component {
 		  			</span>
 				</li>
 			);
-		});
+		}) : <div>查询不到相关会员</div>;
 		return (
 			<div className="mainCon">
 				<div className="container">
