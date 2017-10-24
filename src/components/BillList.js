@@ -40,7 +40,18 @@ class BillList extends Component {
 	render() {
 		var data = this.state.billData;
 		var $li = data.tbody && data.tbody.map((item, i) => {
-			var cls = item.type === "充值" ? "reChange" : "pay";
+			var cls = item.type === "扣款" ? "pay" : "reChange";
+			switch (item.type) {
+				case '扣款':
+					cls = "pay"
+					break;
+				case '充值':
+					cls = "reChange"
+					break;
+				case '项目退还':
+					cls = "back"
+					break;
+			}
 			var _amount = item.amount && item.amount.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,");
 			var _balance = item.balance && item.balance.toString().replace(/(\d)(?=((\d{3})+)$)/g, "$1,");
 			var _time = item.time.split("T")[0]

@@ -61,11 +61,20 @@
 }
 
 .BillList li .pay,
+.BillList li .back,
 .BillList li .reChange {
     width: 50%;
     text-align: right;
     margin: 0 auto;
     letter-spacing: 1px;
+}
+
+.BillList li .back{
+    color: #27a9ff;
+}
+
+.BillList li .back::before {
+    content: "+";
 }
 
 .BillList li .pay {
