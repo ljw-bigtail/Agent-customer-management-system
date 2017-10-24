@@ -212,13 +212,7 @@ userSchema.statics = {
 				console.log(err);
 			} else {
 				var chazhi = _user.balance - data.balance;
-				var howToChange = '';
-				if (chazhi > 0) {
-					howToChange = '扣款';
-				} else {
-					chazhi = 0 - chazhi;
-					howToChange = '充值';
-				}
+				var howToChange = data.type;
 				var mailOptionsToUser = {
 					from: '747624075@qq.com', // 发送者
 					to: _user.email, // 接受者

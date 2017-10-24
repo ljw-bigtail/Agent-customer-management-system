@@ -10,7 +10,8 @@ class UserManagements extends Component {
 	reSetMoney(username, balance, user) {
 		const data = {
 			name: username,
-			balance: this.refs['user' + user].value - 0 + balance
+			balance: this.refs['user' + user].value - 0 + balance,
+			type: '充值'
 		};
 		const billData = {
 			userName: username,

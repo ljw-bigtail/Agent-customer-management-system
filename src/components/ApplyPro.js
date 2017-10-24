@@ -138,8 +138,6 @@ class ApplyPro extends Component {
 				itemData[i - 1].templateSrc = item.src
 			}
 		})
-		console.log(proData)
-		console.log(itemData)
 
 		//发送请求前需要验证两部分是否有值
 		var haveMessage = proData.name !== "" && proData.amount !== "" && proData.payDate !== "" && proData.serviceLife !== "" && proData.desc !== "",
@@ -149,7 +147,7 @@ class ApplyPro extends Component {
 				this.setState({
 					productMes: true
 				})
-				var bala = document.getElementsByTagName("span")[2].textContent.replace(",", "") * 1;
+				var bala = document.getElementsByTagName("span")[2].textContent.replace(/,/g, "") * 1;
 				if (bala - proData.amount >= 0) {
 					console.log("正在申请···");
 					const proUrl = "/api/applyNewPro";
@@ -178,10 +176,10 @@ class ApplyPro extends Component {
 								.then(response => response.json())
 								.then((data) => {
 									//开始扣款
-									var bala = document.getElementsByTagName("span")[2].textContent.replace(",", "") - 0 - proData.amount;
 									const cutData = {
 										name: proData.userName,
-										balance: bala
+										balance: bala,
+										type: '扣款'
 									};
 									const billData = {
 										userName: proData.userName,

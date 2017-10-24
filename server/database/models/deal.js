@@ -14,7 +14,7 @@ let dealSchema = new Schema({
 	}, //	所属用户
 	"type": {
 		type: String
-	}, //	交易类型	充值、扣款
+	}, //	交易类型	充值、扣款、项目退还
 	"amount": {
 		type: Number,
 		default: "0"
